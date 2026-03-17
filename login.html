@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – MSU-MCEST</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --accent: #06b6d4;
+      --cs: #6366f1;
+      --hm: #f59e0b;
+      --it: #10b981;
+      --bg: #0f0f1a;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --glass: rgba(255, 255, 255, 0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: url('media__1773584783174.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 15, 26, 0.85);
+      /* Darker overlay for readability */
+      z-index: -1;
+    }
+
+    /* Blobs Removed */
+
+    /* ── HEADER NAVIGATION ── */
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 24px 40px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      z-index: 10;
+      gap: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ── HERO / LOGIN SECTION ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .school-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 36px;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .school-badge .logo-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 24px rgba(79, 70, 229, 0.4);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .school-badge .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .school-badge h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+    }
+
+    .school-badge span {
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 400;
+      display: block;
+    }
+
+    /* ── HERO CONTENT ── */
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      padding: 20px;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      background: linear-gradient(90deg, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .header-ctas {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-cta {
+      padding: 10px 24px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      letter-spacing: 0.5px;
+    }
+
+
+
+
+
+    /* ── SCROLL ARROW ── */
+    .scroll-arrow {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: #475569;
+      font-size: 0.75rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .scroll-arrow svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--accent);
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(8px)
+      }
+    }
+
+    /* ── COURSES SECTION ── */
+    .courses-section {
+      position: relative;
+      z-index: 1;
+      padding: 80px 20px 100px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .section-header .eyebrow {
+      display: inline-block;
+      padding: 6px 18px;
+      background: rgba(79, 70, 229, 0.15);
+      border: 1px solid rgba(79, 70, 229, 0.35);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #fff 30%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .section-header p {
+      color: #64748b;
+      margin-top: 12px;
+      font-size: 1rem;
+    }
+
+    .dept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── DEPT CARD ── */
+    .dept-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.3s;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .dept-card.visible {
+      animation: cardIn 0.6s ease forwards;
+    }
+
+    @keyframes cardIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .dept-card:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .dept-card:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    .dept-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .dept-card.cs {
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .dept-card.cs:hover {
+      border-color: rgba(99, 102, 241, 0.7);
+      box-shadow: 0 24px 60px rgba(99, 102, 241, 0.2);
+    }
+
+    .dept-card.hm {
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .dept-card.hm:hover {
+      border-color: rgba(245, 158, 11, 0.7);
+      box-shadow: 0 24px 60px rgba(245, 158, 11, 0.2);
+    }
+
+    .dept-card.it {
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .dept-card.it:hover {
+      border-color: rgba(16, 185, 129, 0.7);
+      box-shadow: 0 24px 60px rgba(16, 185, 129, 0.2);
+    }
+
+    .dept-card.sw {
+      border-color: rgba(236, 72, 153, 0.3);
+    }
+
+    .dept-card.sw:hover {
+      border-color: rgba(236, 72, 153, 0.7);
+      box-shadow: 0 24px 60px rgba(236, 72, 153, 0.2);
+    }
+
+    .dept-card.he {
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .dept-card.he:hover {
+      border-color: rgba(168, 85, 247, 0.7);
+      box-shadow: 0 24px 60px rgba(168, 85, 247, 0.2);
+    }
+
+    .dept-card.crim {
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .dept-card.crim:hover {
+      border-color: rgba(239, 68, 68, 0.7);
+      box-shadow: 0 24px 60px rgba(239, 68, 68, 0.2);
+    }
+
+    .dept-header {
+      padding: 28px 28px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .dept-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .cs .dept-icon {
+      background: rgba(99, 102, 241, 0.18);
+      box-shadow: 0 0 18px rgba(99, 102, 241, 0.3);
+    }
+
+    .hm .dept-icon {
+      background: rgba(245, 158, 11, 0.18);
+      box-shadow: 0 0 18px rgba(245, 158, 11, 0.3);
+    }
+
+    .it .dept-icon {
+      background: rgba(16, 185, 129, 0.18);
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.3);
+    }
+
+    .sw .dept-icon {
+      background: rgba(236, 72, 153, 0.18);
+      box-shadow: 0 0 18px rgba(236, 72, 153, 0.3);
+    }
+
+    .he .dept-icon {
+      background: rgba(168, 85, 247, 0.18);
+      box-shadow: 0 0 18px rgba(168, 85, 247, 0.3);
+    }
+
+    .crim .dept-icon {
+      background: rgba(239, 68, 68, 0.18);
+      box-shadow: 0 0 18px rgba(239, 68, 68, 0.3);
+    }
+
+    .dept-header-text h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .cs .dept-header-text h3 {
+      color: #a5b4fc;
+    }
+
+    .hm .dept-header-text h3 {
+      color: #fcd34d;
+    }
+
+    .it .dept-header-text h3 {
+      color: #6ee7b7;
+    }
+
+    .sw .dept-header-text h3 {
+      color: #f472b6;
+    }
+
+    .he .dept-header-text h3 {
+      color: #d8b4fe;
+    }
+
+    .crim .dept-header-text h3 {
+      color: #fca5a5;
+    }
+
+    .dept-header-text span {
+      font-size: 0.75rem;
+      color: #475569;
+    }
+
+    .dept-divider {
+      height: 1px;
+      margin: 0 28px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .course-list {
+      padding: 20px 28px 28px;
+      list-style: none;
+    }
+
+    .course-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.88rem;
+      color: #94a3b8;
+      transition: color 0.2s;
+      cursor: default;
+    }
+
+    .course-list li:last-child {
+      border-bottom: none;
+    }
+
+    .course-list li:hover {
+      color: #e2e8f0;
+    }
+
+    .course-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .cs .course-bullet {
+      background: var(--cs);
+    }
+
+    .hm .course-bullet {
+      background: var(--hm);
+    }
+
+    .it .course-bullet {
+      background: var(--it);
+    }
+
+    .sw .course-bullet {
+      background: #ec4899;
+    }
+
+    .he .course-bullet {
+      background: #a855f7;
+    }
+
+    .crim .course-bullet {
+      background: #ef4444;
+    }
+
+    .badge {
+      margin-left: auto;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .cs .badge {
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+    }
+
+    .hm .badge {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fcd34d;
+    }
+
+    .it .badge {
+      background: rgba(16, 185, 129, 0.2);
+      color: #6ee7b7;
+    }
+
+    .sw .badge {
+      background: rgba(236, 72, 153, 0.2);
+      color: #f472b6;
+    }
+
+    .he .badge {
+      background: rgba(168, 85, 247, 0.2);
+      color: #d8b4fe;
+    }
+
+    .crim .badge {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+    }
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+      }
+
+      .header-ctas {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h2 {
+        font-size: 2.2rem;
+      }
+
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+
+      .section-header h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+
+    <div class="school-badge">
+      <div class="logo-circle">
+        <img src="MSAT LOGO.png" alt="MCEST Logo" />
+      </div>
+      <h1>MSU-MCEST<span>Maigo College of Education, Science & Technology</span></h1>
+    </div>
+
+    <div class="hero-content">
+      <h2>Empowering Minds, Shaping the Future</h2>
+      <p id="about">Welcome to MSU-MCEST. We are committed to providing quality education, fostering innovation, and
+        developing competent professionals ready to lead in a dynamic world.</p>
+    </div>
+
+    <div class="scroll-arrow">
+      <span>Explore Courses</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </svg>
+    </div>
+
+  </section>
+
+  <!-- ── COURSES ── -->
+  <section class="courses-section" id="courses">
+    <div class="section-header">
+      <div class="eyebrow">Academic Programs</div>
+      <h2>Explore Our Departments</h2>
+      <p>Choose a path that shapes your future</p>
+    </div>
+
+    <div class="dept-grid">
+
+      <!-- COMPUTER SCIENCE -->
+      <div class="dept-card cs">
+        <div class="dept-header">
+          <div class="dept-icon"><img src="cs-logo.png.png" alt="CS Logo"
+              style="width: 100%; height: 100%; object-fit: contain; padding: 4px; border-radius: 14px;"></div>
+          <div class="dept-header-text">
+            <h3>Department of Computer Science</h3>
+            <span>Technology & Innovation</span>
+          </div>
+        </div>
+        <div class="dept-divider"></div>
+        <ul class="course-list">
+          <li><span class="course-bullet"></span>Bachelor of Science in Computer Science <span class="badge">BSCS</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- HOSPITALITY MANAGEMENT -->
+      <div class="dept-card hm">
+        <div class="dept-header">
+          <div class="dept-icon"><img src="DHM.png" alt="CS Logo"
+              style="width: 100%; height: 100%; object-fit: contain; padding: 4px; border-radius: 14px;"></div>
+          <div class="dept-header-text">
+            <h3>Department of Hospitality Management</h3>
+            <span>Tourism & Culinary Arts</span>
+          </div>
+        </div>
+        <div class="dept-divider"></div>
+        <ul class="course-list">
+          <li><span class="course-bullet"></span>Bachelor of Science in Hospitality Management <span
+              class="badge">BSHM</span></li>
+        </ul>
+      </div>
+
+      <!-- INDUSTRIAL TECHNOLOGY -->
+      <div class="dept-card it">
+        <div class="dept-header">
+          <div class="dept-icon"><img src="DIT.png" alt="CS Logo"
+              style="width: 100%; height: 100%; object-fit: contain; padding: 4px; border-radius: 14px;"></div>
+          <div class="dept-header-text">
+            <h3>Department of Industrial Technology</h3>
+            <span>Engineering & Trades</span>
+          </div>
+        </div>
+        <div class="dept-divider"></div>
+        <ul class="course-list">
+          <li><span class="course-bullet"></span>Bachelor of Industrial Technology – Electrical <span
+              class="badge">BIT-E</span></li>
+          <li><span class="course-bullet"></span>Bachelor of Industrial Technology – Electronics <span
+              class="badge">BIT-EC</span></li>
+          <li><span class="course-bullet"></span>Bachelor of Industrial Technology – Automotive <span
+              class="badge">BIT-A</span></li>
+          <li><span class="course-bullet"></span>Bachelor of Industrial Technology – Drafting <span
+              class="badge">BIT-D</span></li>
+        </ul>
+      </div>
+
+      <!-- SOCIAL WORK -->
+      <div class="dept-card sw">
+        <div class="dept-header">
+          <div class="dept-icon"><img src="DSW.png" alt="CS Logo"
+              style="width: 100%; height: 100%; object-fit: contain; padding: 4px; border-radius: 14px;"></div>
+          <div class="dept-header-text">
+            <h3>Department of Social Work</h3>
+            <span>Community & Welfare</span>
+          </div>
+        </div>
+        <div class="dept-divider"></div>
+        <ul class="course-list">
+          <li><span class="course-bullet"></span>Bachelor of Science in Social Work <span class="badge">BSSW</span></li>
+        </ul>
+      </div>
+
+      <!-- HUMANITIES & EDUCATION -->
+      <div class="dept-card he">
+        <div class="dept-header">
+          <div class="dept-icon"><img src="DHESS.png" alt="CS Logo"
+              style="width: 100%; height: 100%; object-fit: contain; padding: 4px; border-radius: 14px;"></div>
+          <div class="dept-header-text">
+            <h3>Humanities, Education & Social Sciences</h3>
+            <span>Arts & Teaching</span>
+          </div>
+        </div>
+        <div class="dept-divider"></div>
+        <ul class="course-list">
+          <li><span class="course-bullet"></span>Education & Humanities Programs <span class="badge">EDUC</span></li>
+        </ul>
+      </div>
+
+      <!-- CRIMINOLOGY -->
+      <div class="dept-card crim">
+        <div class="dept-header">
+          <div class="dept-icon"><img src="CRIM.jpg" alt="CS Logo"
+              style="width: 100%; height: 100%; object-fit: contain; padding: 4px; border-radius: 14px;"></div>
+          <div class="dept-header-text">
+            <h3>Department of Criminology</h3>
+            <span>Justice & Security</span>
+          </div>
+        </div>
+        <div class="dept-divider"></div>
+        <ul class="course-list">
+          <li><span class="course-bullet"></span>Bachelor of Science in Criminology <span class="badge">BSCRIM</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+
+    /* Intersection Observer – animate dept cards on scroll */
+    const cards = document.querySelectorAll('.dept-card');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add('visible');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    cards.forEach(c => io.observe(c));
+  </script>
+
+</body>
+
+</html>
